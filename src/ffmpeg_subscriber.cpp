@@ -38,6 +38,7 @@ void FFMPEGSubscriber::subscribeImpl(
   rmw_qos_profile_t custom_qos)
 {
   initialize(node);
+  custom_qos.reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT;
   FFMPEGSubscriberPlugin::subscribeImpl(node, base_topic, callback, custom_qos);
 }
 #else
@@ -46,6 +47,7 @@ void FFMPEGSubscriber::subscribeImpl(
   rmw_qos_profile_t custom_qos, rclcpp::SubscriptionOptions opt)
 {
   initialize(node);
+  custom_qos.reliability = RMW_QOS_POLICY_RELIABILITY_BEST_EFFORT;
 #ifdef IMAGE_TRANSPORT_API_V2
   (void)opt;  // to suppress compiler warning
   FFMPEGSubscriberPlugin::subscribeImpl(node, base_topic, callback, custom_qos);
